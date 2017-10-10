@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+         <meta name="author" content="  ">
+        <title>个税计算</title>
+        <style>
+            body{
+                margin: 0;
+            }
+            main{
+                width: 600px;
+                height: 700px;
+                border: 1px solid black;
+                margin: 50px auto;
+                text-align: center;
+            }
+            header{ 
+                font-size: 2rem;
+                font-weight: bold;
+                margin: 15px;
+            }
+            form input{
+                height: 1.5rem;
+            }
+            div{    
+                border: 1px dashed gray;
+                margin: 1rem 0.5rem 0.3rem 0.5rem;
+            }
+            div:nth-of-type(1){
+                height: 220px;
+            }
+            div:nth-of-type(2){
+                height: 105px;
+            }
+            li{
+                list-style-type: none;
+                margin: 2rem 1rem;
+                font-size: 1.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            var main =document.createElement("main");
+            document.body.appendChild(main);
+
+            var header =document.createElement("header");
+            main.appendChild(header);
+            header.innerHTML ="个税计算器";
+
+            var form =document.createElement("form");
+            form.setAttribute("action","#");
+            main.appendChild(form);
+
+            var input =document.createElement("input");
+            form.appendChild(input);
+            input.setAttribute("type","text");
+            input.setAttribute("id","jishu");
+            input.setAttribute("autocomplete","off");
+            input.setAttribute("placeholder","请输入您的基本工资");
+
+            var button =document.createElement("button");
+            form.appendChild(button);
+            button.setAttribute("type","button");
+            button.innerHTML ="开始计算";
+
+            var div =document.createElement("div");
+            main.appendChild(div);
+
+            for(var i=0;i<3;i++){
+                var li =document.createElement("li");
+                div.appendChild(li);
+            }
+
+            var lis =document.getElementsByTagName("li");
+            for(var i=0;i<lis.length;i++){
+                var li =lis[i];
+                if(i==0){
+                    var span1 =document.createElement("span");
+                    li.appendChild(span1);
+                    span1.innerHTML ="当月纳税薪资为:";
+
+                    var span2 =document.createElement("span");
+                    li.appendChild(span2);
+                    span2.setAttribute("id","nashui");
+                    span2.innerHTML ="0.00";
+                }else if(i==1){
+                    var span1 =document.createElement("span");
+                    li.appendChild(span1);
+                    span1.innerHTML ="应交个人所得税为:";
+
+                    var span2 =document.createElement("span");
+                    li.appendChild(span2);
+                    span2.setAttribute("id","geren");
+                    span2.innerHTML ="0.00";
+                }
+                else{
+                    var span1 =document.createElement("span");
+                    li.appendChild(span1);
+                    span1.innerHTML ="税后薪资为:";
+
+                    var span2 =document.createElement("span");
+                    li.appendChild(span2);
+                    span2.setAttribute("id","shuihou");
+                    span2.innerHTML ="0.00";
+                }
+            }
+            var div =document.createElement("div");
+            main.appendChild(div);
+
+            var li =document.createElement("li");
+            div.appendChild(li);
+
+            var span1 =document.createElement("span");
+            li.appendChild(span1);
+            span1.innerHTML ="根据你的薪资,你属于:";
+
+            var span2 =document.createElement("span");
+            li.appendChild(span2);
+            span2.setAttribute("id","dengji");
+            span2.innerHTML ="***";
+
+        </script>
+        <!--<main>
+            <header>个税计算器</header>
+            <form action="#">
+                <input type="text" id="jishu" required autocomplete="off" placeholder="请输入您的基本工资">
+                <button type="button">开始计算</button>
+            </form>
+            <div>
+                <li>
+                    <span>当月纳税薪资为：</span>
+                    <span id="nashui">0.00</span>
+                </li>
+                <li>
+                    <span>应交个人所得税为：</span>
+                    <span id="geren">0.00</span>
+                </li>
+                <li>
+                    <span>税后薪资为：</span>
+                    <span id="shuihou">0.00</span>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <span>根据你的薪资,你属于：</span><br>
+                    <span id="dengji">***</span>
+                </li>
+            </div>
+        </main>-->
+        <script>
+            var form =document.getElementsByTagName('form')[0];
+            var button =document.getElementsByTagName('button')[0];
+            var div =document.getElementsByTagName('div')[0];
+            
+            form.addEventListener('input',hide);
+            function hide(){
+                    div.style.display ='none';
+            }
+            button.addEventListener('click',calc);
+            function calc(){
+                 var jishu =document.getElementById('jishu').value;
+                 jishu =parseFloat(jishu);
+                 if(isNaN(jishu)){
+                    alert("请输入数字");
+                    return;
+                }
+                
+                if(jishu>0&&jishu<=3500){
+                    var dengji="小屁娃";
+                    document.getElementById('dengji').innerHTML =dengji;
+                }
+                else if(jishu>3500&&jishu<=5000){
+                    var nashui=jishu-3500;
+                    document.getElementById('nashui').innerHTML =nashui.toFixed(2);
+                    var geren=nashui*0.03;
+                    document.getElementById('geren').innerHTML =geren.toFixed(2);
+                    var shuihou=jishu-geren;
+                    document.getElementById('shuihou').innerHTML =shuihou.toFixed(2);
+                    div.style.display ='block';
+                    var dengji="月光族";
+                    document.getElementById('dengji').innerHTML =dengji;
+                }
+                else if(jishu>5000&&jishu<=8000){
+                    var nashui=jishu-3500;
+                    document.getElementById('nashui').innerHTML =nashui.toFixed(2);
+                    var geren=nashui*0.1-105;
+                    document.getElementById('geren').innerHTML =geren.toFixed(2);
+                    var shuihou=jishu-geren;
+                    document.getElementById('shuihou').innerHTML =shuihou.toFixed(2);
+                    div.style.display ='block';
+                    var dengji="蓝领一族";
+                    document.getElementById('dengji').innerHTML =dengji;
+                }
+                else if(jishu>8000&&jishu<=12500){
+                    var nashui=jishu-3500;
+                    document.getElementById('nashui').innerHTML =nashui.toFixed(2);
+                    var geren=nashui*0.2-555;
+                    document.getElementById('geren').innerHTML =geren.toFixed(2);
+                    var shuihou=jishu-geren;
+                    document.getElementById('shuihou').innerHTML =shuihou.toFixed(2);
+                    div.style.display ='block';
+                    var dengji="小白领";
+                    document.getElementById('dengji').innerHTML =dengji;
+                }
+                else if(jishu>12500&&jishu<=38500){
+                    var nashui=jishu-3500;
+                    document.getElementById('nashui').innerHTML =nashui.toFixed(2);
+                    var geren=nashui*0.25-1005;
+                    document.getElementById('geren').innerHTML =geren.toFixed(2);
+                    var shuihou=jishu-geren;
+                    document.getElementById('shuihou').innerHTML =shuihou.toFixed(2);
+                    div.style.display ='block';
+                    var dengji="白领";
+                    document.getElementById('dengji').innerHTML =dengji;
+                }
+                else if(jishu>38500&&jishu<=58500){
+                    var nashui=jishu-3500;
+                    document.getElementById('nashui').innerHTML =nashui.toFixed(2);
+                    var geren=nashui*0.3-2755;
+                    document.getElementById('geren').innerHTML =geren.toFixed(2);
+                    var shuihou=jishu-geren;
+                    document.getElementById('shuihou').innerHTML =shuihou.toFixed(2);
+                    div.style.display ='block';
+                    var dengji="大白领";
+                    document.getElementById('dengji').innerHTML =dengji;
+                }
+                else if(jishu>58500&&jishu<=83500){
+                    var nashui=jishu-3500;
+                    document.getElementById('nashui').innerHTML =nashui.toFixed(2);
+                    var geren=nashui*0.35-5505;
+                    document.getElementById('geren').innerHTML =geren.toFixed(2);
+                    var shuihou=jishu-geren;
+                    document.getElementById('shuihou').innerHTML =shuihou.toFixed(2);
+                    div.style.display ='block';
+                    var dengji="土豪";
+                    document.getElementById('dengji').innerHTML =dengji;
+                }
+                 else if(jishu>83500){
+                    var nashui=jishu-3500;
+                    document.getElementById('nashui').innerHTML =nashui.toFixed(2);
+                    var geren=nashui*0.45-13505;
+                    document.getElementById('geren').innerHTML =geren.toFixed(2);
+                    var shuihou=jishu-geren;
+                    document.getElementById('shuihou').innerHTML =shuihou.toFixed(2);
+                    div.style.display ='block';
+                    var dengji="大富翁";
+                    document.getElementById('dengji').innerHTML =dengji;
+                }
+                else{
+                    alert("唉,又一个只知道花钱的娃");
+                }
+            }
+
+        </script>
+    </body>
+<html>

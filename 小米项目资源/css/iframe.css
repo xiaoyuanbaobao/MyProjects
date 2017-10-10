@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+li{
+    list-style-type: none;
+}
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    margin: 0;
+    /*display: flex;*/
+}
+ul{
+    margin: 0;
+    height: 10%;
+    width: 100%;
+}
+iframe{
+    height: 90%;
+    width: 100%;
+    border: none;
+    border-top: dotted 1px gray;
+}
+a img{
+    height: 50px;
+}
+a:hover{
+    padding-top: 5px;
+    font-size: 2rem;
+    color: orangered;
+}
+p:hover{
+    color: orangered;
+}

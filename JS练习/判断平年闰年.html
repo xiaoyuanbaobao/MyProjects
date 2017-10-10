@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>随机获取某一天</title>
+	</head>
+	<body>
+		<form>
+			<h2>输入一个年份判断它是闰年？还是平年？</h2>
+			<input type="text" id="year" placeholder="请输入一个年份"/>
+			<button type="button">确定</button>
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	var btn = document.getElementsByTagName("button")[0];
+	btn.onclick = function(){
+		var year = document.getElementById("year").value;
+		// 判断当前年份是否为整百数，如果是 整除400
+		// 如果不是 判断是否能整除4
+		var msg;
+		if (year % 100 == 0) {
+			if (year % 400 == 0) {
+				msg = year + "年为闰年";
+			} else{
+				msg = year + "年为平年";
+			}
+		} else{
+			if (year % 4 == 0) {
+				msg = year + "年为闰年";
+			} else{
+				msg = year + "年为平年";
+			}
+		}
+		alert(msg);
+	}
+	
+	
+</script>
+
+<script type="text/javascript">
+	// 首先获取当前年份和月份 
+	// 判断当前年份是否为闰年
+	// 分情况讨论答曰和小月 ，和2月
+	// 随即取1-30的下整数
+	
+	function RandomDay(){
+		var time = new Date();
+		var month = time.getMonth() + 1;
+		var days;
+		switch (month){
+			case 1:case 3:
+			case 5:case 7:
+			case 8:case 10:
+			case 12:
+				days = 31;
+				break;
+			case 2:
+				// 获取年份 判断是否为闰年
+				var year = time.getFullYear();
+				if (year % 100 == 0) {
+					if (year % 400 == 0) {
+						days = 29;
+					} else{
+						days = 28;
+					}
+				} else{
+					if (year % 4 == 0) {
+						days = 29;
+					} else{
+						days = 28;
+					}
+				}
+				break;
+			case 4:case 6:
+			case 9:case 11:
+				days = 30;
+				break;
+			default:
+				break;
+		}
+		var num = Math.floor(Math.random()*days);
+		return num;
+ 	}
+	
+	var day = RandomDay();
+	console.log(day);
+	
+</script>
+

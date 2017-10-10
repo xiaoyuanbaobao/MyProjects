@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+         <meta name="author" content="  ">
+        <title>雪花</title>
+        <style>
+            html,body{
+                background-color: black;
+            }
+            /*@keyframes drop{
+                0%{
+                    transform: translate(0,0);
+                }
+                25%{
+                    transform: translate(70px,150px);
+                }
+                50%{
+                    transform: translate(140px,300px);
+                }
+                75%{
+                    transform: translate(210px,400px);
+                }
+                100%{
+                    transform: translate(280px,500px);
+                }
+            }*/
+            
+        </style>
+    </head>
+    <body>
+        <!--<div></div> -->
+    </body>
+    <script> 
+        
+        function createSnow(){ 
+            var img =document.createElement("img");
+            img.src ="flake.png";
+        // 随机数产生雪花宽高并改变宣化大小
+            var index =Math.floor(Math.random()*80);
+            img.style.height =index+"px";
+            img.style.width =index+"px";
+        // 随机数产生雪花位置
+            var x=Math.floor(Math.random()*500); 
+            var y=Math.floor(Math.random()*1380);
+            img.style.position ="absolute";
+            img.style.top =x+"px";
+            img.style.left =y+"px";
+            // img.setAttribute("animation","drop,5s,linear,infinite");
+             function down(){
+        // 每一次下落让top和left都随机加上一定的数值
+                x +=Math.random()*10;
+                y +=Math.random()*5;
+        // 判断出界 只要出界 把值重置为-100
+                if(x>650)x=-100;
+                if(y>1300)y=-100;
+                img.style.top =x+"px";
+                img.style.left =y+"px";
+            }
+    // 时间间隔
+            setInterval(down,50);
+        document.body.appendChild(img);
+    }
+        for(i=0;i<80;i++){
+            new createSnow();
+        }
+    </script>
+<html>

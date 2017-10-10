@@ -1,0 +1,89 @@
+.media{
+    height: 200px;
+    background-color: #fff;
+    padding: 25px;
+}
+.media h3{
+    font-size: 4rem;
+}
+.media p{
+    font-size: 3rem;
+    color: gray;
+}
+.btn-group .btn{
+    font-size: 2rem;
+}
+#bao{
+    margin-top: 20px;
+    background-color: #ddd;
+    height: 100px;
+    display: flex;
+}
+#bao img{
+    width: 80px;
+    height: 80px;
+    margin: 10px 20px;
+}
+#bao h3{
+    font-size: 4rem;
+    margin-top: 30px;
+}
+#bao span{
+    font-size: 4rem;
+    margin-top: 23px;
+    color: orangered;
+    padding-left: 10%;
+}
+#tip{
+    margin-top: 30px;
+    height: 85px;
+    color: gray;
+    font-size: 3rem;
+    line-height: 85px;
+    padding-left: 30px;
+    background-color: whitesmoke;
+}
+#gift{
+    background-color: whitesmoke;
+}
+#gift .checkbox{
+    margin-top: 30px;
+    height: 60px;
+    padding-left: 35px;
+    font-size: 4rem;
+    color: gray;
+}
+#gift .checkbox input{
+    width: 45px;
+    height: 45px;
+}
+#gift span{
+    width: 76px;
+}
+.navbar{
+    height: 10%;
+    font-size: 3.5rem;
+    text-align: center;
+}
+.navbar div:nth-of-type(1){
+    color: gray;
+    padding-top: 20px;
+}
+.navbar div:nth-of-type(1) p{
+    margin-bottom: 0;
+}
+.navbar div:nth-of-type(1) span{
+    color: orangered;
+    font-weight: bold;
+}
+.navbar div:nth-of-type(2){
+    margin: 0;
+    background-color: #eee;
+    line-height: 113px;
+}
+.navbar div:nth-of-type(3){
+    margin: 0;
+    color: white;
+    background-color: orangered;
+    line-height: 113px;
+}
